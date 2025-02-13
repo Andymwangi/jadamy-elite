@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -15,9 +18,12 @@ const Navbar: React.FC = () => {
   return (
     <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
       <div className="container mx-auto flex justify-between items-center px-6 py-3">
-        <Link href="/" className="text-2xl font-bold text-gray-900">
-          Jadamy Elite Academy
+        <div className="flex items-center space-x-3">
+          <Image src="/schoollogo.jpg" alt="School Logo" width={50} height={50} />
+          <Link href="/">
+           <h1 className="text-xl font-bold text-gray-800">Jadamy Elite Academy</h1>
         </Link>
+       </div>
 
         <ul className="flex space-x-6 text-lg">
           <li>
@@ -38,6 +44,11 @@ const Navbar: React.FC = () => {
           <li>
             <Link href="/activities" className="hover:text-yellow-500">
               Activities
+            </Link>
+          </li>
+          <li>
+            <Link href="/admissions" className="hover:text-yellow-500">
+              Admissions
             </Link>
           </li>
           <li>
