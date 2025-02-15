@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Jadamy Elite Academy",
     description: "Center of Excellence - Nairobi's premier private school.",
-    images: ["/jadamy.jpeg"], // Replace with actual image
+    images: ["/jadamy1.PNG"], // Replace with actual image
   }, 
   icons: {
     icon: "/favicon.ico",
