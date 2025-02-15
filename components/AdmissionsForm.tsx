@@ -3,25 +3,21 @@
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
 
-const AdmissionsForm = () => {
-  type SchoolLevel = "Pre-Primary" | "Primary" | "Junior Secondary";
+const gradeOptions = {
+  "Pre-Primary": ["PP1", "PP2"],
+  Primary: ["Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5", "Grade 6"],
+  "Junior Secondary": ["Grade 7", "Grade 8", "Grade 9"],
+};
 
-  const [formData, setFormData] = useState<{
-    name: string;
-    email: string;
-    phone: string;
-    message: string;
-    level: SchoolLevel;
-    grade: string;
-    location: string;
-  }>({
+const AdmissionsForm = () => {
+  const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
-    message: "",
-    level: "Pre-Primary", // Default value
+    level: "",
     grade: "",
     location: "",
+    message: "",
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -29,8 +25,7 @@ const AdmissionsForm = () => {
   };
 
   const handleLevelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const selectedLevel = e.target.value as SchoolLevel;
-    setFormData({ ...formData, level: selectedLevel, grade: "" });
+    setFormData({ ...formData, level: e.target.value, grade: "" });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -46,7 +41,7 @@ const AdmissionsForm = () => {
       .then(
         () => {
           alert("Application submitted successfully!");
-          setFormData({ name: "", email: "", phone: "", message: "", level: "Pre-Primary", grade: "", location: "" });
+          setFormData({ name: "", email: "", phone: "", level: "", grade: "", location: "", message: "" });
         },
         () => {
           alert("An error occurred. Please try again.");
@@ -54,19 +49,12 @@ const AdmissionsForm = () => {
       );
   };
 
-  // Define grade options with a mapped type
-  const gradeOptions: Record<SchoolLevel, string[]> = {
-    "Pre-Primary": ["PP1", "PP2"],
-    Primary: ["Grade 1", "Grade 2", "Grade 3", "Grade 4", "Grade 5", "Grade 6"],
-    "Junior Secondary": ["Grade 7", "Grade 8", "Grade 9"],
-  };
-
   return (
     <section className="bg-gray-100 py-12">
       <div className="max-w-4xl mx-auto px-6">
         <h2 className="text-3xl font-bold text-yellow-600 text-center">Admissions Application Form</h2>
-        <form onSubmit={handleSubmit} className="mt-8 space-y-6">
-          {/* Name */}
+        <form onSubmit={handleSubmit} className="mt-8 space-y-6 bg-white p-6 rounded-lg shadow-lg">
+          {/* Full Name */}
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-700">
               Full Name
@@ -78,11 +66,11 @@ const AdmissionsForm = () => {
               required
               value={formData.name}
               onChange={handleChange}
-              className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500"
+              className="mt-1 p-3 block w-full border border-gray-400 bg-gray-100 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500"
             />
           </div>
 
-          {/* Email */}
+          {/* Email Address */}
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700">
               Email Address
@@ -94,11 +82,11 @@ const AdmissionsForm = () => {
               required
               value={formData.email}
               onChange={handleChange}
-              className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500"
+              className="mt-1 p-3 block w-full border border-gray-400 bg-gray-100 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500"
             />
           </div>
 
-          {/* Phone */}
+          {/* Phone Number */}
           <div>
             <label htmlFor="phone" className="block text-sm font-medium text-gray-700">
               Phone Number
@@ -110,51 +98,56 @@ const AdmissionsForm = () => {
               required
               value={formData.phone}
               onChange={handleChange}
-              className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500"
+              className="mt-1 p-3 block w-full border border-gray-400 bg-gray-100 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500"
             />
           </div>
 
-          {/* School Level Selection */}
+          {/* School Level Selection (Radio Buttons) */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">School Level</label>
-            <div className="mt-2 space-y-2">
+            <label className="block text-sm font-medium text-gray-700">Select School Level</label>
+            <div className="mt-2 flex flex-col space-y-2">
               {Object.keys(gradeOptions).map((level) => (
-                <label key={level} className="flex items-center space-x-2">
+                <label
+                  key={level}
+                  className="flex items-center space-x-3 bg-gray-100 px-4 py-2 rounded-lg border border-gray-400 hover:bg-gray-200 cursor-pointer"
+                >
                   <input
                     type="radio"
                     name="level"
                     value={level}
                     checked={formData.level === level}
                     onChange={handleLevelChange}
-                    className="h-4 w-4 text-yellow-600 focus:ring-yellow-500 border-gray-300"
+                    className="h-5 w-5 text-yellow-600 focus:ring-yellow-500 border-gray-300"
                   />
-                  <span>{level}</span>
+                  <span className="text-gray-900 font-semibold">{level}</span>
                 </label>
               ))}
             </div>
           </div>
 
-          {/* Grade Selection */}
-          <div>
-            <label htmlFor="grade" className="block text-sm font-medium text-gray-700">
-              Select Grade
-            </label>
-            <select
-              id="grade"
-              name="grade"
-              required
-              value={formData.grade}
-              onChange={handleChange}
-              className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500"
-            >
-              <option value="">-- Select Grade --</option>
-              {gradeOptions[formData.level].map((grade) => (
-                <option key={grade} value={grade}>
-                  {grade}
-                </option>
-              ))}
-            </select>
-          </div>
+          {/* Grade Selection (Dropdown) */}
+          {formData.level && (
+            <div>
+              <label htmlFor="grade" className="block text-sm font-medium text-gray-700">
+                Select Grade
+              </label>
+              <select
+                id="grade"
+                name="grade"
+                required
+                value={formData.grade}
+                onChange={handleChange}
+                className="mt-1 p-3 block w-full border border-gray-400 bg-gray-100 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 hover:bg-gray-200"
+              >
+                <option value="">-- Select Grade --</option>
+                {gradeOptions[formData.level as keyof typeof gradeOptions].map((grade) => (
+                  <option key={grade} value={grade}>
+                    {grade}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
 
           {/* Parent's Location */}
           <div>
@@ -168,7 +161,7 @@ const AdmissionsForm = () => {
               required
               value={formData.location}
               onChange={handleChange}
-              className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500"
+              className="mt-1 p-3 block w-full border border-gray-400 bg-gray-100 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500"
             />
           </div>
 
@@ -183,7 +176,7 @@ const AdmissionsForm = () => {
               rows={4}
               value={formData.message}
               onChange={handleChange}
-              className="mt-1 p-2 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500"
+              className="mt-1 p-3 block w-full border border-gray-400 bg-gray-100 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500"
             ></textarea>
           </div>
 
