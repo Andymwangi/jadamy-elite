@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/jadamy.jpeg", // Replace with your school's banner image
+        url: "/jadamy1.PNG", // Replace with your school's banner image
         width: 1200,
         height: 630,
         alt: "Jadamy Elite Academy Campus",
