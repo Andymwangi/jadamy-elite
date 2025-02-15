@@ -10,11 +10,11 @@ export const metadata: Metadata = {
   title: "Jadamy Elite Academy",
   description: "Center of Excellence - Shaping the Future of Learning",
   keywords: "Jadamy Elite Academy, education, private school, Nairobi, Kenya",
-  authors: [{ name: "Jadamy Elite Academy", url: "https://jadamyeliteacademy.com" }],
+  authors: [{ name: "Jadamy Elite Academy", url: "https://jadamy-elite.vercel.app/" }],
   openGraph: {
     title: "Jadamy Elite Academy - Excellence in Education",
     description: "A leading private academy offering quality education in Nairobi, Kenya.",
-    url: "https://jadamyeliteacademy.com",
+    url: "https://jadamy-elite.vercel.app/",
     siteName: "Jadamy Elite Academy",
     type: "website",
     images: [
