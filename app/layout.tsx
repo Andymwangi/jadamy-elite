@@ -31,6 +31,11 @@ export const metadata: Metadata = {
     title: "Jadamy Elite Academy",
     description: "Center of Excellence - Nairobi's premier private school.",
     images: ["/jadamy.jpeg"], // Replace with actual image
+  }, 
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.png",
+    apple: "/apple-touch-icon.png",
   },
 };
 

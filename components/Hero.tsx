@@ -5,11 +5,11 @@ import Link from "next/link";
 
 const Hero = () => {
   return (
-    <section className="relative bg-gradient-to-r from-yellow-50 to-yellow-100">
+    <section className="pt-20 relative bg-gradient-to-r from-yellow-50 to-yellow-100">
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/images/hero-bg.jpg"
+          src="/jadamy1.PNG"
           alt="School Image"
           layout="fill"
           objectFit="cover"
@@ -19,30 +19,33 @@ const Hero = () => {
 
       {/* Hero Content */}
       <div className="relative z-10 flex flex-col items-center text-center py-20 px-6 md:px-16">
-        {/* Animated Text */}
+        {/* Sliding Animated Text */}
         <motion.h1
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          initial={{ x: "-100vw", opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ type: "tween", duration: 1.5 }}
           className="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight"
         >
-          Welcome to <span className="text-yellow-600">Jadamy Elite Academy</span>
+          Welcome to{" "}
+          <span className="text-yellow-600">Jadamy Elite Academy</span>
         </motion.h1>
 
+        {/* Sliding Subtext */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.3 }}
+          initial={{ x: "100vw", opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ type: "tween", duration: 1.5, delay: 0.3 }}
           className="mt-4 text-lg md:text-xl text-gray-700 max-w-3xl"
         >
-          Excellence in Education, Excellence in Life. Shaping young minds for a brighter future.
+          Excellence in Education, Excellence in Life. Shaping young minds for a
+          brighter future.
         </motion.p>
 
-        {/* Buttons */}
+        {/* Animated Buttons */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1.2, delay: 0.6 }}
           className="mt-6 flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-6"
         >
           <Link href="/about">

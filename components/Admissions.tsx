@@ -4,6 +4,11 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
+const fadeInSlide = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+};
+
 const Admissions = () => {
   const [currentStep, setCurrentStep] = useState(1);
 
@@ -15,13 +20,20 @@ const Admissions = () => {
   ];
 
   return (
-    <section className="bg-gray-100 py-12">
+    <motion.section
+      className="bg-gray-100 py-12"
+      variants={fadeInSlide}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.3 }}
+    >
       <div className="max-w-6xl mx-auto px-6">
         {/* Title Section */}
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          variants={fadeInSlide}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
           className="text-center"
         >
           <h2 className="text-4xl font-bold text-yellow-600">Admissions Process</h2>
@@ -33,9 +45,10 @@ const Admissions = () => {
           {steps.map((step) => (
             <motion.div
               key={step.id}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: step.id * 0.2 }}
+              variants={fadeInSlide}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.3 }}
               className={`p-6 rounded-lg shadow-md ${
                 currentStep >= step.id ? "bg-yellow-500 text-white" : "bg-white"
               }`}
@@ -48,8 +61,14 @@ const Admissions = () => {
         </div>
 
         {/* Call-to-Action */}
-        <div className="text-center mt-12">
-          <Link href="/admissions-form">
+        <motion.div
+          className="text-center mt-12"
+          variants={fadeInSlide}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
+        >
+          <Link href="/admissions">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -58,9 +77,9 @@ const Admissions = () => {
               Apply Now
             </motion.button>
           </Link>
-        </div>
+        </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 

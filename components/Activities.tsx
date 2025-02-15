@@ -7,7 +7,7 @@ const activities = [
     title: "Sports & Athletics",
     description:
       "We offer football, basketball, swimming, and track events, promoting teamwork and physical fitness.",
-    image: "/football.jpeg", // Replace with actual image paths
+    image: "/football.jpg", // Replace with actual image paths
   },
   {
     title: "Music & Drama",
@@ -31,7 +31,7 @@ const activities = [
 
 const Activities = () => {
   return (
-    <section className="bg-gray-100 py-16">
+    <section className="pt-20 bg-gray-100 py-16">
       <div className="max-w-6xl mx-auto px-6">
         <motion.h2
           className="text-4xl font-bold text-yellow-600 text-center mb-10"

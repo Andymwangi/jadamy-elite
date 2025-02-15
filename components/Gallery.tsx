@@ -16,7 +16,7 @@ const galleryImages = [
   "/children.jpeg",
   "/schoolbus.jpeg",
   "/children3.jpeg",
-  "/football.jpeg",
+  "/football.jpg",
 ];
 
 const GallerySection = () => {
