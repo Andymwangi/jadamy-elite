@@ -11,9 +11,10 @@ import "swiper/css/pagination";
 import "swiper/css/effect-coverflow";
 
 const galleryImages = [
-  "/classroom.jpeg",
-  "/classroom1.jpeg",
-  "/children.jpeg",
+  "/students1.jpeg",
+  "/students2.jpeg",
+  "/students3.jpeg",
+  "/students4.jpeg",
   "/schoolbus.jpeg",
   "/children3.jpeg",
   "/football.jpg",
@@ -88,6 +89,8 @@ const GallerySection = () => {
                     alt={`Gallery Image ${index + 1}`}
                     width={500}
                     height={350}
+                    quality={100} // Ensure max quality here
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" // Responsive sizing
                     className="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -114,6 +117,7 @@ const GallerySection = () => {
                 alt="Expanded View"
                 width={800}
                 height={600}
+                quality={100} // Ensure max quality here
                 className="max-w-full max-h-[90vh] rounded-lg"
               />
             </div>
